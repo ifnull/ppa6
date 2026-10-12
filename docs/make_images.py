@@ -23,14 +23,10 @@ OUT = os.path.join(ROOT, 'docs', 'images')
 # (output name, ppa6.py print arguments)
 EXAMPLES = [
     ('label', ['-p', 'label', '-i', 'examples/labels.txt']),
-    ('label-single', ['-p', 'label', 'Office Supplies',
-                      'Pens, tape, staples, and sticky notes']),
     ('label-options', ['-p', 'label', '-i', 'examples/labels.txt',
                        '-o', 'length=60', '-o', 'title.font=serif-bold']),
     ('label-border', ['-p', 'label', '-o', 'border=3', 'First Aid',
                       'Bandages, gauze, tape, and antiseptic wipes']),
-    ('label-not-uniform', ['-p', 'label', '-i', 'examples/labels.txt',
-                           '-o', 'uniform=false']),
     ('label-long', ['-p', 'label', 'Holiday Decorations and Gift Wrap',
                     'Ornaments, lights, ribbon, and gift tags']),
     ('tag', ['-p', 'tag', '-i', 'examples/labels.csv']),
@@ -53,7 +49,7 @@ def torn_edge(length: int, rng: random.Random) -> list[int]:
     return [rng.randint(0, TOOTH) for _ in range(length // TOOTH + 2)]
 
 
-def paper_strip(preview: Image.Image, landscape: bool, seed: int) -> Image.Image:
+def paper_strip(preview: Image.Image, landscape: bool, seed: str) -> Image.Image:
     """Draw a 1-bit preview as a torn strip of paper with a soft shadow."""
     # Work with the paper running top to bottom, then turn it for landscape.
     if landscape:
@@ -90,14 +86,15 @@ def paper_strip(preview: Image.Image, landscape: bool, seed: int) -> Image.Image
 def main():
     os.makedirs(OUT, exist_ok=True)
     with tempfile.TemporaryDirectory() as tmp:
-        for seed, (name, args) in enumerate(EXAMPLES):
+        for name, args in EXAMPLES:
             raw = os.path.join(tmp, f'{name}.png')
             subprocess.run([sys.executable, os.path.join(ROOT, 'ppa6.py'),
                             'print', *args, '--preview', raw],
                            cwd=ROOT, check=True, stdout=subprocess.DEVNULL)
             preview = Image.open(raw)
             landscape = args[args.index('-p') + 1] in LANDSCAPE_PROFILES
-            paper_strip(preview, landscape, seed).save(
+            # Seeded by name so an image only changes when its content does.
+            paper_strip(preview, landscape, name).save(
                 os.path.join(OUT, f'{name}.png'), optimize=True)
             print(f'docs/images/{name}.png')
 

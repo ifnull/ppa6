@@ -1,13 +1,10 @@
 # TODO
 
-## Before publishing
-
-- [ ] Run `git init`, then check that `git status` doesn't list anything in `personal/` or `apk/` before the first commit.
-- [ ] Decide whether to keep `apk/` at all. It's ~650MB, and the decompiled sources can be regenerated from the XAPK with jadx when needed.
+Roughly in priority order.
 
 ## Check on real paper
 
-So far every label layout has only been checked as `--preview` images.
+So far the `label` and `tag` layouts have only been checked as `--preview` images.
 
 - [ ] Test-print each profile with the files in `examples/`.
 - [ ] Check darkness 2 for large bold text (bleeding, fading at the end of long jobs) and pick the default for `label` and `tag`.
@@ -15,25 +12,24 @@ So far every label layout has only been checked as `--preview` images.
 - [ ] Measure a printed label to confirm 8 dots per mm and the 48mm printable width.
 - [ ] Check whether the 255-row chunks in `print_rows` leave visible seams in large solid text.
 
-## Tests and tooling
-
-- [ ] Add pytest tests for the input parsers: text blocks, `field: value` blocks, CSV header detection, and each JSON shape.
-- [ ] Add tests for profile loading: overrides, unknown keys, bad choices, and user profiles replacing built-ins.
-- [ ] Add golden-image tests that render each profile from `examples/` and compare pixels, like the check used to confirm the `dense` refactor matched the old output. `docs/make_images.py` already renders every example and could be the starting point.
-- [ ] Add ruff for linting and formatting.
-
-## Packaging and setup
-
-- [ ] Add a `pyproject.toml` with a `ppa6` command and the built-in profiles as package data. The tool switches to `/usr/bin/python3` to get Bluetooth support, so a pipx or venv install still needs Pillow in the system Python. Either document that or find a better approach.
-- [ ] Add a config file (`~/.config/ppa6/config.toml`) for the default printer address, profile, and darkness, instead of relying only on `PERIPAGE_MAC`.
-- [ ] Split `ppa6.py` into modules (driver, layout, input parsing, CLI) once it's packaged.
-- [ ] Add shell completion, including profile names.
-
 ## Printing reliability
 
 - [ ] Show a clear error when the printer is off or out of range, instead of a raw socket traceback, and retry the connection once.
 - [ ] Check the battery before long jobs and warn when it's low.
 - [ ] Tune `row_delay` for large solid areas, which may need a slower feed to print evenly.
+
+## Tests and tooling
+
+- [ ] Add pytest tests for the input parsers: text blocks, `field: value` blocks, CSV header detection, and each JSON shape.
+- [ ] Add tests for profile loading: overrides, unknown keys, wrong value types, and user profiles replacing built-ins.
+- [ ] Add golden-image tests that render each profile from `examples/` and compare pixels. `docs/make_images.py` already renders every example and could be the starting point.
+- [ ] Add ruff for linting and formatting.
+
+## Packaging and setup
+
+- [ ] Add a `pyproject.toml` with a `ppa6` command and the built-in profiles as package data, splitting `ppa6.py` into modules (driver, layout, input parsing, CLI) along the way. The tool switches to `/usr/bin/python3` to get Bluetooth support, so a pipx or venv install still needs Pillow in the system Python; either document that or find a better approach.
+- [ ] Add a config file (`~/.config/ppa6/config.toml`) for the default printer address, profile, and darkness, instead of relying only on `PERIPAGE_MAC`.
+- [ ] Add shell completion, including profile names.
 
 ## Label features
 
