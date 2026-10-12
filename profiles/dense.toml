@@ -1,0 +1,18 @@
+# Dense text: as much text as possible per inch of paper. The whole input is
+# one block of preformatted monospace text, sized so the longest line just
+# fits across the paper. This is what `ppa6.py text FILE` uses.
+
+description = "Preformatted monospace text, auto-sized to the longest line"
+orientation = "portrait"
+batch = false
+margin_x = 0
+margin_y = 0.5
+
+[[fields]]
+name = "body"
+aliases = ["text"]
+font = "mono"
+min_size = 6
+max_size = 32
+align = "left"
+preserve_spaces = true

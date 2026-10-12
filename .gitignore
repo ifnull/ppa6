@@ -1,0 +1,15 @@
+# Personal print files (may contain names, phone numbers, medical info)
+personal/
+
+# Official PeriPage app (APK/XAPK and decompiled sources) used for protocol
+# research; proprietary and ~650MB, so never committed
+apk/
+
+# Rendered previews
+*.png
+!docs/**/*.png
+
+# Python
+__pycache__/
+*.pyc
+.venv/

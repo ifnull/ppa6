@@ -1,0 +1,33 @@
+# Compact label printed upright across the paper: 48mm wide, as tall as it
+# needs to be. Suits narrow drawer fronts and small parts bins.
+# See label.toml for what each key does.
+
+description = "Small upright label: name across the paper, contents below"
+orientation = "portrait"
+margin = 2
+gap = 1
+border = 3
+border_radius = 2
+uniform = true
+cut_line = true
+spacing = 5
+darkness = 2
+
+[[fields]]
+name = "title"
+aliases = ["name", "container"]
+font = "sans-bold"
+min_size = 20
+max_size = 72
+wrap = true
+max_lines = 2
+
+[[fields]]
+name = "description"
+aliases = ["desc", "contents"]
+font = "sans"
+wrap = true
+max_lines = 3
+min_size = 14
+max_size = 26
+max_ratio = 0.6

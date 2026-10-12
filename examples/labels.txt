@@ -1,0 +1,10 @@
+Office Supplies
+Pens, tape, staples, and sticky notes
+
+Craft Box
+Glue sticks, scissors, ribbon, and paint
+
+title: First Aid
+desc: Bandages, gauze, tape, and antiseptic wipes
+
+Spare Keys

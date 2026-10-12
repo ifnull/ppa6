@@ -1,0 +1,52 @@
+# Organizer label, printed sideways so the name can use the full 48mm paper
+# width as its height. Each label is a strip you cut off: big bold name on
+# top, smaller contents line(s) below.
+#
+# This file doubles as the reference for every profile key. Sizes in mm are
+# along/across the paper; font sizes are in printer dots (8 dots = 1mm).
+
+description = "Container label: big name, smaller contents below (printed sideways)"
+
+# portrait  = text runs across the 48mm paper width, label grows downward
+# landscape = text runs along the paper, label is 48mm tall and N mm long
+orientation = "landscape"
+
+length = 0          # fixed label length in mm; 0 = fit to the name...
+min_length = 50     # ...but at least this long
+max_length = 90     # ...and at most this long (the name shrinks to fit)
+
+margin = 3          # mm around the content (margin_x / margin_y per axis)
+gap = 1.5           # mm between name and contents
+valign = "center"   # top | center | bottom
+border = 0          # outline width in dots, 0 = none (try 3)
+border_radius = 2   # mm, for the outline corners
+
+uniform = true      # same font sizes across a batch (smallest wins)
+cut_line = true     # dashed cut guide between labels in a batch
+spacing = 6         # mm between labels in a batch
+darkness = 2        # 0 light, 1 medium, 2 dark; -1 = printer's setting
+feed = 96           # motor steps fed after the job
+
+# Fields are drawn top to bottom. Inline values and plain-text blocks fill
+# them in this order; keyed input (`desc: ...`, CSV headers, JSON keys) can
+# use the name or any alias.
+
+[[fields]]
+name = "title"
+aliases = ["name", "container"]
+font = "sans-bold"  # mono, sans, condensed, serif (+ -bold), a path, or any fc-match name
+weight = 3          # share of the label height, relative to other fields
+min_size = 24       # auto-fit range in dots; size = N pins it
+wrap = true         # long names go onto a second line when that makes them bigger
+max_lines = 2
+
+[[fields]]
+name = "description"
+aliases = ["desc", "contents"]
+font = "sans"
+weight = 2
+wrap = true         # word-wrap to the label width
+max_lines = 2       # truncated with … if it still doesn't fit at min_size
+min_size = 16
+max_size = 56
+max_ratio = 0.55    # never more than 55% of the name's size
