@@ -23,14 +23,10 @@ OUT = os.path.join(ROOT, 'docs', 'images')
 # (output name, ppa6.py print arguments)
 EXAMPLES = [
     ('label', ['-p', 'label', '-i', 'examples/labels.txt']),
-    ('label-single', ['-p', 'label', 'Office Supplies',
-                      'Pens, tape, staples, and sticky notes']),
     ('label-options', ['-p', 'label', '-i', 'examples/labels.txt',
                        '-o', 'length=60', '-o', 'title.font=serif-bold']),
     ('label-border', ['-p', 'label', '-o', 'border=3', 'First Aid',
                       'Bandages, gauze, tape, and antiseptic wipes']),
-    ('label-not-uniform', ['-p', 'label', '-i', 'examples/labels.txt',
-                           '-o', 'uniform=false']),
     ('label-long', ['-p', 'label', 'Holiday Decorations and Gift Wrap',
                     'Ornaments, lights, ribbon, and gift tags']),
     ('tag', ['-p', 'tag', '-i', 'examples/labels.csv']),
