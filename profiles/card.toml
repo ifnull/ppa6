@@ -1,0 +1,41 @@
+# Business card, printed sideways at 85mm long, so it comes out 85 x 48mm:
+# the standard card length, a little short of the standard 55mm height.
+# Name and an optional role at the top left, contact details in monospace
+# pinned to the bottom left, one per line. See label.toml for what each key
+# does.
+
+description = "Business card: name and role at the top, contact lines at the bottom (printed sideways, 85mm)"
+orientation = "landscape"
+length = 85
+margin_x = 6
+margin_y = 5
+gap = 1.5
+uniform = true
+cut_line = true
+spacing = 6
+darkness = 2
+align = "left"      # default for every field
+
+[[fields]]
+name = "name"
+aliases = ["full_name"]
+font = "condensed-bold"
+min_size = 24
+max_size = 60
+
+[[fields]]
+name = "role"
+aliases = ["title", "job", "position", "company"]
+font = "sans"
+min_size = 14
+max_size = 24
+
+[[fields]]
+name = "contact"
+aliases = ["details", "info"]
+font = "mono"
+push = true         # sit at the bottom of the card, below the spare space
+max_lines = 5       # one detail per line: email, phone, website...
+min_size = 14
+max_size = 24
+line_spacing = 1.2

@@ -1,0 +1,9 @@
+name: Alex Rivera
+role: Product Designer, Example Studio
+contact: alex@example.com
+(555) 010-0199
+example.com
+
+name: Sam Okafor
+contact: sam@example.org
+(555) 010-0142
