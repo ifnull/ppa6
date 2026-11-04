@@ -117,6 +117,22 @@ Fits as much text as possible on as little paper as possible. The whole input is
 
 ![A recipe card printed with the dense profile](docs/images/dense.png)
 
+### `card`
+
+A business card, printed sideways at a fixed 85mm long: the name and role at the top left, and the contact details in monospace at the bottom left. 85mm is the standard card length, but the 48mm paper makes it a little shorter than a standard 55mm card, so it works best as a sticker on card stock or as a mock-up.
+
+Fields: `name`, `role` (or `title`, `job`, `position`, `company`), and `contact` (or `details`, `info`). The role is optional. Put each contact detail on its own line:
+
+```text
+name: Alex Rivera
+role: Product Designer, Example Studio
+contact: alex@example.com
+(555) 010-0199
+example.com
+```
+
+![Business cards printed with the card profile](docs/images/card.png)
+
 ### Making your own
 
 Copy a profile from `profiles/` into `~/.config/ppa6/profiles/` and edit it. A profile there replaces a built-in one with the same name. See the [profile reference](docs/profiles.md) for every setting.

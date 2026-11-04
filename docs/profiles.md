@@ -68,3 +68,4 @@ Setting a field key at the top level of a profile makes it the default for every
 | `align` | `center` | `left`, `center`, or `right` |
 | `line_spacing` | `1.0` | Line height multiplier |
 | `preserve_spaces` | `false` | Keep runs of spaces, for preformatted text |
+| `push` | `false` | Push this field, and the fields after it, to the bottom of the label. The spare height goes above it, so the fields before it stay at the top, and `valign` is ignored. |

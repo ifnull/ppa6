@@ -31,10 +31,11 @@ EXAMPLES = [
                     'Ornaments, lights, ribbon, and gift tags']),
     ('tag', ['-p', 'tag', '-i', 'examples/labels.csv']),
     ('dense', ['-p', 'dense', '-i', 'examples/recipe.txt']),
+    ('card', ['-p', 'card', '-i', 'examples/cards.txt']),
 ]
 
 # Profiles printed sideways; their previews are upright, so the strip is turned.
-LANDSCAPE_PROFILES = {'label'}
+LANDSCAPE_PROFILES = {'label', 'card'}
 
 PAPER = (250, 248, 242)
 INK = (28, 28, 30)

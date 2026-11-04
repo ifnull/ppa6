@@ -238,6 +238,7 @@ FIELD_DEFAULTS = {
     'align': 'center',           # left | center | right
     'line_spacing': 1.0,
     'preserve_spaces': False,    # keep runs of spaces (for preformatted text)
+    'push': False,               # push this field and the rest to the bottom
 }
 
 # Field keys may also be set at the top level as defaults for every field.
@@ -588,11 +589,19 @@ def render_record(profile: dict, record: dict) -> tuple[Image.Image, dict]:
 
     content_h = sum(b.height for b in blocks) + gap * (len(blocks) - 1)
     spare = height - 2 * my - content_h
-    y = my + {'top': 0, 'center': spare // 2, 'bottom': spare}[profile['valign']]
+    # A pushed field takes all the spare height above it, so the fields before
+    # it sit at the top and it and the rest sit at the bottom.
+    pushed = next((b for b in blocks if b.field['push']), None)
+    if pushed:
+        y = my
+    else:
+        y = my + {'top': 0, 'center': spare // 2, 'bottom': spare}[profile['valign']]
 
     img = Image.new('L', (int(width), int(height)), 255)
     draw = ImageDraw.Draw(img)
     for b in blocks:
+        if b is pushed:
+            y += max(spare, 0)
         for line in b.lines:
             free = inner_w - text_width(b.font, line)
             x = mx + {'left': 0, 'center': free // 2, 'right': free}[b.field['align']]
